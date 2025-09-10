@@ -1,0 +1,15 @@
+.conteiner-relatorio{
+ padding: 10px;
+}
+.conteiner-relatorio h1{
+ padding-left: 10px;
+}
+.caixaRelatorio{
+ background-color: black;
+ padding: 10px;
+ border-radius: 10px;
+ height: 150px;
+}
+.caixaRelatorio h2{
+ color: aliceblue;
+}

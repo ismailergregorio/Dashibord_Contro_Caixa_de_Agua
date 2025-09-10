@@ -1,0 +1,33 @@
+.sensor{
+ padding: 10px;
+ display: flex;
+ justify-content:space-between;
+ align-items: center;
+ max-width: 220px;
+}
+
+.textStatus h1 {
+ padding-left: 10px;
+}
+.textStatus h2 {
+ padding-left: 10px;
+}
+.Sinalisacao{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ gap:10px;
+ 
+}
+.ativo{
+ height: 50px;
+ width: 50px;
+ border-radius: 10px;
+ background: #339933;
+}
+.destivado{
+ height: 50px;
+ width: 50px;
+ border-radius: 10px;
+ background: #9A2727;
+}
