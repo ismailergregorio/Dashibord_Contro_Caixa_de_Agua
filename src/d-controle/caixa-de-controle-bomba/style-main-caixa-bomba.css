@@ -1,33 +1,56 @@
-.controleBomba{
-padding: 10px;
+.controleBomba {
+    padding: 10px;
 }
-.controle{
- display: flex;
- justify-content: space-between;
- align-items:start;
- padding-left: 10px;
+
+.controle {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    padding-left: 10px;
 }
-.controleStatusMotor{
- display: flex;
- gap: 5px;
+
+.controleStatusMotor {
+    display: flex;
+    gap: 5px;
 }
-.bombaLigar{
- width: 50px;
- height: 50px;
- background: var(--state-botao-ligado);
- border-radius: 10px;
+
+.bombaLigar {
+    width: 50px;
+    height: 50px;
+    background: var(--state-botao-ligado);
+    border-radius: 10px;
 }
-.bombaDesligar{
- width: 50px;
- height: 50px;
- background: var(--state-botao-deligado);
- border-radius: 10px;
+
+.bombaDesligar {
+    width: 50px;
+    height: 50px;
+    background: var(--state-botao-deligado);
+    border-radius: 10px;
 }
-.imgBomba{
- width: 250px;
+
+.imgBomba {
+    width: 250px;
 }
-.conteinerBomba{
- display: flex;
- justify-content: center;
- align-items: center;
+
+.conteinerBomba {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Slider {
+    width: 100px;
+    height: 50px;
+    border-radius: 50px;
+    background: rebeccapurple;
+}
+
+#btnMotor:checked ~ .circulo {
+    background: rgb(255, 255, 255);
+    
+}
+.circulo{
+    height: 30px;
+    width: 30px;
+    background: red;
 }
