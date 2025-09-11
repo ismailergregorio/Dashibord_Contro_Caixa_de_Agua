@@ -1,0 +1,5 @@
+.caixa_sensor_e_caixa_config{
+ display: grid;
+ grid-template-columns: 60% auto;
+ padding: 10px;
+}

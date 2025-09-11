@@ -1,56 +1,73 @@
 .controleBomba {
-    padding: 10px;
+  padding: 10px;
 }
-
 .controle {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    padding-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding-left: 10px;
+  padding: 10px;
+  border: 3px solid rgb(46, 46, 46); /* contorno */
+  border-radius: 10px 10px 0px 0px; /* arredondar cantos (opcional) */
 }
-
-.controleStatusMotor {
-    display: flex;
-    gap: 5px;
+.conteinerBomba{
+ border: 3px solid rgb(46, 46, 46); /* contorno */
+ border-radius: 0px 0px 10px 10px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
 }
-
-.bombaLigar {
-    width: 50px;
-    height: 50px;
-    background: var(--state-botao-ligado);
-    border-radius: 10px;
-}
-
-.bombaDesligar {
-    width: 50px;
-    height: 50px;
-    background: var(--state-botao-deligado);
-    border-radius: 10px;
-}
-
 .imgBomba {
-    width: 250px;
+ width: 250px;
+}
+.imgRaio{
+ position: absolute;
+ width: 70px;
+ right: 300px;
+ bottom: 15px;
+}
+.controleStatusMotor {
+  display: flex;
+  gap: 5px;
+}
+.bombaLigar {
+  width: 50px;
+  height: 50px;
+  background: var(--state-botao-ligado);
+  border-radius: 10px;
+}
+.bombaDesligar {
+  width: 50px;
+  height: 50px;
+  background: var(--state-botao-deligado);
+  border-radius: 10px;
 }
 
-.conteinerBomba {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.toogle h1 {
+  padding-bottom: 5px;
 }
-
-.Slider {
-    width: 100px;
-    height: 50px;
-    border-radius: 50px;
-    background: rebeccapurple;
+#btnMotor {
+  appearance: none;
 }
-
+.btn {
+  height: 45px;
+  width: 90px;
+  background: rgb(143, 143, 143);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+}
+.circulo {
+  height: 39px;
+  width: 39px;
+  background: rgb(231, 231, 231);
+  border-radius: 25px;
+  position: relative;
+  left: 5px;
+  transition: transform 0.3s ease;
+}
 #btnMotor:checked ~ .circulo {
-    background: rgb(255, 255, 255);
-    
-}
-.circulo{
-    height: 30px;
-    width: 30px;
-    background: red;
+  background: rgb(231, 231, 231);
+  transition: transform 0.3s ease;
+  transform: translateX(42px);
 }
