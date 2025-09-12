@@ -1,0 +1,13 @@
+.continenta_grafico{
+ background: var(--secondary-color);
+ padding: 10px;
+ border-radius: 10px;
+ margin-top: 10px;
+}
+@media (min-width: 768px) {
+ .continenta_grafico {
+   display: grid;
+   grid-template-rows: 50% 50%; /* 2 colunas iguais */
+   /* height: 350px; */
+ }
+}

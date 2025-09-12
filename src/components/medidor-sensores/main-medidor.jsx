@@ -2,13 +2,13 @@ import "./style-medidor.css";
 import React, { useEffect, useRef } from "react";
 import HighchartsReact from "highcharts-react-official";
 
-export default function Medidor({ titulo }) {
+export default function Medidor({ titulo,valor }) {
   const chartRef = useRef(null);
 
   const options = {
     chart: {
       type: "solidgauge",
-      height: "260px",
+      height: "150px",
       backgroundColor: "#064663",
       plotBackgroundColor: null, // fundo da área de plotagem
       plotBorderWidth: 0,
@@ -17,7 +17,7 @@ export default function Medidor({ titulo }) {
     title: null,
     pane: {
       center: ["50%", "85%"],
-      size: "140%",
+      size: "150%",
       startAngle: -90,
       endAngle: 90,
       background: {
@@ -26,36 +26,26 @@ export default function Medidor({ titulo }) {
         shape: "arc",
         backgroundColor: "#041C32",
       },
-      labels: {
-        style: {
-          color: "#ECB365", // 👈 cor dos números do eixo
-          fontSize: "12px", // tamanho da fonte
-          fontWeight: "bold", // opcional: deixa em negrito
-        },
-      },
     },
     yAxis: {
       min: 0,
       max: 200,
       title: { text: "Velocidade" },
-      stops: [
-        [0.1, "#55BF3B"],
-        [0.5, "#DDDF0D"],
-        [0.9, "#DF5353"],
-      ],
-    },
-
-    exporting: {
-      enabled: false,
-    },
-
-    tooltip: {
-      enabled: false,
+      tickColor: "#FFFFFF",   // 👈 cor das marcas (ticks)
+      minorTickColor: "#FFFFFF", // 👈 cor dos ticks menores
+      labels: {
+        style: {
+          color: "#ffffff",
+          fontSize: "14px",
+          fontWeight: "bold",
+        },
+      },
+      
     },
     series: [
       {
         name: "Velocidade",
-        data: [1],
+        data: [valor],
         dataLabels: {
           format:
             '<div style="text-align:center">' +
@@ -75,7 +65,7 @@ export default function Medidor({ titulo }) {
 
   return (
     <div className="conteiner-medidor">
-      <h1>{titulo} </h1>
+      <h1 className="titulo-text">{titulo} </h1>
       <div id="containerMedidor" className="medidor">
         <HighchartsReact
           highcharts={window.Highcharts}

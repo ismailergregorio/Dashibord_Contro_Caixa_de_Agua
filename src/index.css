@@ -10,6 +10,7 @@
   --state-botao-deligado:#9A2727;
   --state-botao-ligado-ativo:#4eee4e;
   --state-botao-deligado-ativo:#eb4141;
+  --colo-branco:#f1f1f1;
 
   --font-size-h1:1rem;
   --font-size-h2:0.7rem;
@@ -25,7 +26,6 @@ body{
 }
 main{
   margin: 5px;
-
 }
 h1{
   font-family: "Inter", sans-serif;
@@ -39,4 +39,33 @@ h2{
 .d-controle{
   background-color: var(--tree-color);
   border-radius: 10px;
+}
+.dashibord{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+@media (min-width: 768px) {
+  body{
+    background-color: rgb(255, 0, 0);
+  }
+  .dashibord{
+    display: grid;
+    grid-template-columns: 250px auto;
+    /* grid-template-rows: 1fr; */
+
+    grid-template-areas: 
+    "controle sensores"
+    "controle grafico";
+  }
+  .d-controle{
+    grid-area:controle
+  }
+  .graficos-sensores{
+    grid-area:sensores;
+  }
+
+  .graficos-caixas{
+    grid-area:grafico;
+  }
 }

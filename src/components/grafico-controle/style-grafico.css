@@ -1,0 +1,8 @@
+.grafico{
+ background: var(--secondary-color);
+ /* height: 200px; */
+}
+.titulo_grafico {
+ padding: 10px;
+ color: white;
+}

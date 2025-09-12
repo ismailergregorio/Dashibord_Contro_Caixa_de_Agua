@@ -1,0 +1,12 @@
+.conteiner-sensor {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+@media (min-width: 768px) {
+  .conteiner-sensor {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* 3 colunas iguais */
+    /* height: 100px; */
+  }
+}

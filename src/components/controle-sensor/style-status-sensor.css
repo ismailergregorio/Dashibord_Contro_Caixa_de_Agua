@@ -1,33 +1,37 @@
 .sensor{
- padding: 10px;
+ padding: 2px;
+ padding-right: 5px;
  display: flex;
  justify-content:space-between;
  align-items: center;
- max-width: 220px;
+ /* max-width: 220px; */
 }
 
 .textStatus h1 {
  padding-left: 10px;
+ font-size: 0.6rem;
 }
 .textStatus h2 {
  padding-left: 10px;
+ font-size: 0.4rem;
 }
 .Sinalisacao{
  display: flex;
  justify-content: center;
  align-items: center;
- gap:10px;
+ gap:5px;
+ width: 50%;
  
 }
 .ativo{
- height: 50px;
- width: 50px;
- border-radius: 10px;
+ height: 30px;
+ width: 100%;
+ border-radius: 5px;
  background: #339933;
 }
 .destivado{
- height: 50px;
- width: 50px;
- border-radius: 10px;
+ height: 30px;
+ width: 100%;
+ border-radius: 5px;
  background: #9A2727;
 }

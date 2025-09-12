@@ -1,8 +1,9 @@
 .conteiner-medidor{
+ /* display: block; */
  background: var(--secondary-color);
- height: 300px;
  padding: 10px;
+ border-radius: 10px;
 }
-.medidor{
- height: 250px;
+.titulo-text{
+ color: white;
 }
