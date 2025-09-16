@@ -3,3 +3,9 @@
  grid-template-columns: 60% auto;
  padding: 10px;
 }
+@media (min-width:450px) and (max-width:800px){
+ .main-controler{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+ }
+}

@@ -6,14 +6,17 @@
   --text-color: #111827;      /* quase preto */
   --font-base: "Inter", sans-serif;
   --spacing-md: 1rem;
-  --state-botao-ligado:#339933;
-  --state-botao-deligado:#9A2727;
+  --state-botao-ligado:#1f5c1f;
+  --state-botao-deligado:#701e1e;
   --state-botao-ligado-ativo:#4eee4e;
   --state-botao-deligado-ativo:#eb4141;
   --colo-branco:#f1f1f1;
 
   --font-size-h1:1rem;
   --font-size-h2:0.7rem;
+
+  --whidth-min:450px;
+  --whidth-max:850px;
 }
 
 * {
@@ -45,9 +48,35 @@ h2{
   flex-direction: column;
   gap: 10px;
 }
-@media (min-width: 768px) {
+@media (min-width:450px) {
   body{
-    background-color: rgb(255, 0, 0);
+    /* background-color: rgb(255, 0, 0); */
+  }
+  .dashibord{
+    display: grid;
+    grid-template-columns: 250px auto;
+    /* grid-template-rows: 1fr; */
+
+    grid-template-areas: 
+    "controle controle"
+    "sensores sensores"
+    "grafico grafico";
+  }
+  .d-controle{
+    grid-area:controle
+  }
+  .graficos-sensores{
+    grid-area:sensores;
+  }
+
+  .graficos-caixas{
+    grid-area:grafico;
+  }
+}
+
+@media (min-width:850px) {
+  body{
+    /* background-color: rgb(0, 255, 34); */
   }
   .dashibord{
     display: grid;
@@ -56,6 +85,7 @@ h2{
 
     grid-template-areas: 
     "controle sensores"
+    "controle grafico"
     "controle grafico";
   }
   .d-controle{

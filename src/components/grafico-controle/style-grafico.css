@@ -2,7 +2,13 @@
  background: var(--secondary-color);
  /* height: 200px; */
 }
-.titulo_grafico {
+.titulo_grafico ,.TextGrafico{
  padding: 10px;
  color: white;
+}
+.TextGrafico{
+ display: flex;
+ flex-direction:row;
+ flex-wrap: nowrap;
+ justify-content: space-between;
 }

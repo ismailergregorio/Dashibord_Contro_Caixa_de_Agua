@@ -128,7 +128,10 @@ export default function Grafico({ titulo }) {
 
   return (
     <div className="grafico">
-      <h1 className="titulo_grafico">{titulo}</h1>
+      <div className="TextGrafico">
+        <h1 className="titulo_grafico">{titulo}</h1>
+        <h1 className="titulo_grafico">55%</h1>
+      </div>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );

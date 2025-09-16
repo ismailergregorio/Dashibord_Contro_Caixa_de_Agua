@@ -6,7 +6,7 @@ import CaixaConfig from "./caixa-config/main-caixa-config";
 
 export default function MainControle() {
   return (
-    <div>
+    <div className="main-controler">
       <Relatorio />
       <div className="caixa_sensor_e_caixa_config">
         <CaixaSensores />
