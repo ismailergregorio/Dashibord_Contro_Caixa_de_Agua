@@ -1,37 +1,54 @@
-.sensor{
- padding: 2px;
- padding-right: 5px;
- display: flex;
- justify-content:space-between;
- align-items: center;
- /* max-width: 220px; */
+.sensor {
+    padding: 2px;
+    padding-right: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* max-width: 220px; */
 }
 
 .textStatus h1 {
- padding-left: 10px;
- font-size: 0.7rem;
+    padding-left: 10px;
+    font-size: 0.7rem;
 }
+
 .textStatus h2 {
- padding-left: 10px;
- font-size: 0.5rem;
+    padding-left: 10px;
+    font-size: 0.5rem;
 }
-.Sinalisacao{
- display: flex;
- justify-content: center;
- align-items: center;
- gap:5px;
- width: 50%;
- 
+
+.Sinalisacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 50%;
+
 }
-.ativo{
- height: 30px;
- width: 100%;
- border-radius: 5px;
- background: var(--state-botao-ligado);
+
+.ativo {
+    height: 30px;
+    width: 100%;
+    border-radius: 5px;
+    background: var(--state-botao-ligado-ativo);
 }
-.destivado{
- height: 30px;
- width: 100%;
- border-radius: 5px;
- background: var(--state-botao-deligado);
+
+.ativo_off{
+    height: 30px;
+    width: 100%;
+    border-radius: 5px;
+    background: var(--state-botao-ligado);
+}
+
+.destivado {
+    height: 30px;
+    width: 100%;
+    border-radius: 5px;
+    background: var(--state-botao-deligado-ativo);
+}
+.destivado_off{
+    height: 30px;
+    width: 100%;
+    border-radius: 5px;
+    background: var(--state-botao-deligado);
 }
