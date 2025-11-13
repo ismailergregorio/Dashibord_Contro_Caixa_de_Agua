@@ -4,38 +4,20 @@ import raioligado from "../../../public/image/raio-ligado.png";
 import mqtt from "mqtt";
 import { useState } from "react";
 
-export default function ControleBomda() {
-  const [stado_motor, setStadoMotor] = useState("");
+export default function ControleBomda({ cliente, status, stado_motor, setStado }) {
 
-  const url = 'ws://192.168.100.5:8080'
-
-  // Create an MQTT client instance
-  const options = {
-    // Clean session
-    clean: true,
-    connectTimeout: 4000,
-    // Authentication
-    clientId: 'client_' + Math.random().toString(16).substr(2, 8),
-    username: 'meuuser',
-    password: '1234',
-  }
-  const client = mqtt.connect(url, options);
-
-  client.on("connect", function () {
-    console.log("✅ Conectado ao broker");
-    client.subscribe("sensor/MOTOR", function (err) {
-    });
-  });
-
-  client.on("message", function (topic, message) {
-    setStadoMotor(message.toString());
-    console.log(stado_motor);
-  });
-
-  function ligarMotor(){
-    if(client.on){
-    client.publish('sensor/MOTOR', `${stado_motor === "1"? "1":"0"}`)
-    setStadoMotor(!stado_motor)}
+  function ligarMotor() {
+    if (cliente.on) {
+      if (stado_motor == "1") {
+        cliente.publish('s/sensor/MOTOR', "0")
+        console.log("s/sensor/MOTOR desligado")
+        setStado("0")
+      } else {
+        cliente.publish('s/sensor/MOTOR', "1")
+        console.log("s/sensor/MOTOR ligado")
+        setStado("1")
+      }
+    }
   }
 
   return (
@@ -53,13 +35,13 @@ export default function ControleBomda() {
         <div className="statusMotor">
           <h1>Status:</h1>
           <div className="controleStatusMotor">
-            <div className="bombaLigar" />
-            <div className="bombaDesligar" />
+            <div className={status === "1" ? "bombaLigar_ativado" : "bombaLigar"}></div>
+            <div className={status === "1" ? "bombaDesligar" : "bombaDesligar_ativado"}></div>
           </div>
         </div>
       </div>
       <div className="conteinerBomba">
-        <img src={raioligado} className="imgRaio" />
+        <img src={raioligado} className={status === "1" ? "blink" : "imgRaio"} />
         <img src={bomba} className="imgBomba" />
       </div>
     </div>

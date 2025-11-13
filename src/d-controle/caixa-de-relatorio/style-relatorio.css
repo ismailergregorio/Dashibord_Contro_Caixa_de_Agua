@@ -1,15 +1,24 @@
-.conteiner-relatorio{
- padding: 10px;
+.conteiner-relatorio {
+    padding: 10px;
 }
-.conteiner-relatorio h1{
- padding-left: 10px;
+
+.conteiner-relatorio h1 {
+    padding-left: 10px;
 }
-.caixaRelatorio{
- background-color: black;
- padding: 10px;
- border-radius: 10px;
- height: 150px;
+
+.caixaRelatorio {
+    background-color: black;
+    padding: 10px;
+    border-radius: 10px;
+    height: 150px;
+    overflow-y: auto;
+    /* adiciona scroll vertical quando o conteúdo passar do limite */
+    border: 1px solid #ccc;
+    padding: 10px;
 }
-.caixaRelatorio h2{
- color: aliceblue;
+
+.caixaRelatorio p {
+    color: aliceblue;
+    font-size: 0.6rem;
+    
 }
