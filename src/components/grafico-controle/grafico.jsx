@@ -1,9 +1,10 @@
 import "./style-grafico.css";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-export default function Grafico({ titulo }) {
+export default function Grafico({ titulo, dados, valorAtual }) {
+
   const options = {
     colors: ["#3CC3DF", "#8979FF", "#FF928A"], // ordem das séries
     chart: {
@@ -85,7 +86,7 @@ export default function Grafico({ titulo }) {
     series: [
       {
         name: "Moose",
-        data: [63, 20, 58, 90, 10, 5, 80, 90, 80, 50],
+        data: dados.map(item => [item.id, item.valor]),
         marker: {
           enabled: true, // habilita os pontos
           radius: 4, // tamanho do ponto
@@ -103,36 +104,49 @@ export default function Grafico({ titulo }) {
         },
         fillOpacity: 0.5,
       },
-      {
-        name: "Deer",
-        data: [45, 10, 30, 59, 90, 70, 76, 36, 48, 40],
-        marker: {
-          enabled: true, // habilita os pontos
-          radius: 4, // tamanho do ponto
-          symbol: "circle", // formato: 'circle', 'square', 'diamond', 'triangle', 'triangle-down'
-          fillColor: "rgba(10,10,10, 2)", // cor interna
-          lineWidth: 2, // borda
-          lineColor: "rgba(137,121, 255, 10)", // cor da borda
-        },
-        color: {
-          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 }, // vertical
-          stops: [
-            [0, "rgba(137,121, 255, 5)"], // cor topo
-            [1, "rgba(137,121, 255, 0)"], // cor base
-          ],
-        },
-        fillOpacity: 0.5,
-      },
+      // {
+      //   name: "Deer",
+      //   data: [45, 10, 30, 59, 90, 70, 76, 36, 48, 40],
+      //   marker: {
+      //     enabled: true, // habilita os pontos
+      //     radius: 4, // tamanho do ponto
+      //     symbol: "circle", // formato: 'circle', 'square', 'diamond', 'triangle', 'triangle-down'
+      //     fillColor: "rgba(10,10,10, 2)", // cor interna
+      //     lineWidth: 2, // borda
+      //     lineColor: "rgba(137,121, 255, 10)", // cor da borda
+      //   },
+      //   color: {
+      //     linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 }, // vertical
+      //     stops: [
+      //       [0, "rgba(137,121, 255, 5)"], // cor topo
+      //       [1, "rgba(137,121, 255, 0)"], // cor base
+      //     ],
+      //   },
+      //   fillOpacity: 0.5,
+      // },
     ],
   };
+  const chartRef = useRef(null);
+  useEffect(() => {
+    if (!chartRef.current || valorAtual == null) return;
+
+    const chart = chartRef.current.chart;
+
+    chart.series[0].addPoint(
+      [dados.length + 1, valorAtual],
+      true,
+      false
+    );
+
+  }, [valorAtual]);
 
   return (
     <div className="grafico">
       <div className="TextGrafico">
         <h1 className="titulo_grafico">{titulo}</h1>
-        <h1 className="titulo_grafico">55%</h1>
+        <h1 className="titulo_grafico">{valorAtual}</h1>
       </div>
-      <HighchartsReact highcharts={Highcharts} options={options} />
+      <HighchartsReact highcharts={Highcharts} options={options} ref={chartRef}/>
     </div>
   );
 }

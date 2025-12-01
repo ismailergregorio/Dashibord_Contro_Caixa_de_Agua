@@ -5,17 +5,18 @@ import mqtt from "mqtt";
 import { useState } from "react";
 
 export default function ControleBomda({ cliente, status, stado_motor, setStado }) {
+  const estadoBtnMotorDoSite = "estadoBtn/site/motor";
 
   function ligarMotor() {
     if (cliente.on) {
-      if (stado_motor == "1") {
-        cliente.publish('s/sensor/MOTOR', "0")
+      if (stado_motor == "0") {
+        cliente.publish(estadoBtnMotorDoSite, "1")
         console.log("s/sensor/MOTOR desligado")
-        setStado("0")
-      } else {
-        cliente.publish('s/sensor/MOTOR', "1")
-        console.log("s/sensor/MOTOR ligado")
         setStado("1")
+      } else {
+        cliente.publish(estadoBtnMotorDoSite, "0")
+        console.log("s/sensor/MOTOR ligado")
+        setStado("0")
       }
     }
   }

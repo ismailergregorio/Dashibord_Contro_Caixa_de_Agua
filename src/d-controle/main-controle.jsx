@@ -7,6 +7,14 @@ import mqtt from "mqtt";
 import { useState, useRef, useEffect } from "react";
 
 export default function MainControle() {
+  const estadoSenorDeNivel1MQTT = "estado/nivel[1]";
+  const estadoSenorDeNivel2MQTT = "estado/nivel[2]";
+  const estadoSenorDeNivel3MQTT = "estado/nivel[3]";
+  const estadoBtnMotorDoEspMQTT = "estadoBtn/esp/motor";
+
+  const initSite = "init/atulisar";
+  const estadoBtnMotorDoSite = "estadoBtn/site/motor";
+
   const agora = new Date();
   const dataFormatada = agora.toISOString(); // 2025-10-31T22:15:00.000Z
   const clientRef = useRef(null);
@@ -15,6 +23,7 @@ export default function MainControle() {
   const [stado_sensor3, setStadoSensor3] = useState("");
   const [stadoMotor, setStadoMotor] = useState("");
   const [statusMotor, setStatusMotor] = useState("");
+  
   const [loguis, setLogst] = useState([]);
   const url = 'ws://192.168.100.5:8080'
 
@@ -33,19 +42,19 @@ export default function MainControle() {
     client.on("connect", function () {
       console.log("✅ Conectado ao broker");
 
-      client.subscribe("sensor/SEN[1]", function (err) {
+      client.subscribe(estadoSenorDeNivel1MQTT, function (err) {
       });
-      client.subscribe("sensor/SEN[2]", function (err) {
+      client.subscribe(estadoSenorDeNivel2MQTT, function (err) {
       });
-      client.subscribe("sensor/SEN[3]", function (err) {
+      client.subscribe(estadoSenorDeNivel3MQTT, function (err) {
       });
-      client.subscribe("sensor/MOTOR", function (err) {
+      client.subscribe(estadoBtnMotorDoEspMQTT, function (err) {
       });
-      client.subscribe("stado/MOTOR", function (err) {
+      client.subscribe(estadoBtnMotorDoSite, function (err) {
       });
 
       if (clientRef) {
-        client.publish("init/atulisar", "true");
+        client.publish(initSite, "true");
         clientRef.current = client;
       }
     });
@@ -59,33 +68,33 @@ export default function MainControle() {
   });
 
   client.on("message", function (topic, message) {
-    if (topic == "sensor/SEN[1]") {
+    if (topic == estadoSenorDeNivel1MQTT) {
       setStadoSensor1(message.toString());
       console.log(message.toString());
     }
   });
   client.on("message", function (topic, message) {
-    if (topic == "sensor/SEN[2]") {
+    if (topic == estadoSenorDeNivel2MQTT) {
       setStadoSensor2(message.toString());
       console.log(message.toString());
     }
   });
   client.on("message", function (topic, message) {
-    if (topic == "sensor/SEN[3]") {
+    if (topic == estadoSenorDeNivel3MQTT) {
       setStadoSensor3(message.toString());
       console.log(message.toString());
     }
   });
 
   client.on("message", function (topic, message) {
-    if (topic == "sensor/MOTOR") {
+    if (topic == estadoBtnMotorDoEspMQTT) {
       setStadoMotor(message.toString());
       console.log(topic, message);
     }
   });
 
   client.on("message", function (topic, message) {
-    if (topic == "stado/MOTOR") {
+    if (topic == estadoBtnMotorDoEspMQTT) {
       setStatusMotor(message.toString());
       console.log(topic, message);
     }
