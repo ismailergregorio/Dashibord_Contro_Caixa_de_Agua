@@ -86,7 +86,7 @@ export default function Grafico({ titulo, dados, valorAtual }) {
     series: [
       {
         name: "Moose",
-        data: dados.map(item => [item.id, item.valor]),
+        data: dados.map(item => [item.id, item.valor]),//dados
         marker: {
           enabled: true, // habilita os pontos
           radius: 4, // tamanho do ponto

@@ -5,6 +5,9 @@ import mqtt from "mqtt";
 import axios from 'axios'
 export default function ConteinerGrafico() {
 
+  const getDadosCaixaStado = "http://192.168.100.5:8081/api/caixa/ultimo-caixa";
+  const getDadosMotoStado = "http://192.168.100.5:8081/api/motor/get";
+
   //receber dados
   const estadoCaixa = "estado/caixa";
   const estadoBtnMotorDoEspMQTT = "estadoBtn/esp/motor";
@@ -12,6 +15,14 @@ export default function ConteinerGrafico() {
   //solicitação
   const estadoBtnMotorDoSite = "estadoBtn/site/motor";
   const estadoCaixaDoSite = "estado/site/caixa";
+
+  //dados de controle
+  const [dadoAtualCaixa, setDadoAtualCaixa] = useState("");
+  const [dadoAtualMotor, setDadoAtualCMotor] = useState("");
+
+  const [dadosCaixa, setDadosCaixa] = useState([]);
+  const [dadosMotor, setDadosMotor] = useState([]);
+
 
   const agora = new Date();
   const dataFormatada = agora.toISOString(); // 2025-10-31T22:15:00.000Z
@@ -30,12 +41,12 @@ export default function ConteinerGrafico() {
     password: '1234',
   }
   const client = mqtt.connect(url, options);
+
   useEffect(() => {
     client.on("connect", function () {
+      getDadosCaixa();
       console.log("✅ Conectado ao broker");
       client.subscribe(estadoBtnMotorDoEspMQTT, function (err) {
-      });
-      client.subscribe(estadoBtnMotorDoSite, function (err) {
       });
       client.subscribe(estadoCaixa, function (err) {
       });
@@ -78,27 +89,18 @@ export default function ConteinerGrafico() {
         console.log("Estado = 3");
         valor = 3;
       }
-
       setDadoAtualCaixa(valor);
-      console.log("valor numérico recebido:", valor);
     }
 
     // --- Dados do motor ---
     if (topic === estadoBtnMotorDoEspMQTT) {
       setDadoAtualCMotor(Number(message.toString()));
-      console.log("motor:", message.toString());
     }
   });
 
-  const [dadoAtualCaixa, setDadoAtualCaixa] = useState("");
-  const [dadoAtualMotor, setDadoAtualCMotor] = useState("");
-
-  const [dadosCaixa, setDadosCaixa] = useState([]);
-  const [dadosMotor, setDadosMotor] = useState([]);
-
   const getDadosCaixa = () => {
     try {
-      axios.get("http://localhost:8081/api/caixa/get").then((res) => {
+      axios.get(getDadosCaixaStado).then((res) => {
         setDadosCaixa(res.data);
         console.log(res.data);
       })
@@ -111,7 +113,7 @@ export default function ConteinerGrafico() {
 
   const getDadosMotor = () => {
     try {
-      axios.get("http://localhost:8081/api/motor/get").then((res) => {
+      axios.get(getDadosMotoStado).then((res) => {
         setDadosMotor(res.data);
         console.log(res.data);
       })
@@ -123,9 +125,16 @@ export default function ConteinerGrafico() {
   }
 
   useEffect(() => {
-    getDadosCaixa();
-    getDadosMotor();
-  }, [])
+    if (dadoAtualCaixa !== "") {
+      getDadosCaixa();
+    }
+  }, [dadoAtualCaixa]);
+
+  useEffect(() => {
+    if (dadoAtualMotor !== "") {
+      getDadosMotor();
+    }
+  }, [dadoAtualMotor]);
 
   return (
     <div className="continenta_grafico">
