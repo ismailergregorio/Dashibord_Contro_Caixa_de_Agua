@@ -57,11 +57,11 @@ export default function Medidor({ titulo,valor }) {
     ],
   };
 
-  useEffect(() => {
-    if (chartRef.current) {
-      console.log("Chart pronto:", chartRef.current.chart);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (chartRef.current) {
+
+  //   }
+  // }, []);
 
   return (
     <div className="conteiner-medidor">

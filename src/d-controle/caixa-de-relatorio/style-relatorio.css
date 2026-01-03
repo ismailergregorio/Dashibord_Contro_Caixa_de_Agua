@@ -22,3 +22,26 @@
     font-size: 0.6rem;
     
 }
+.relatorio-heder{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.stadoConectado{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+.stadoConectado h1{
+    font-size: 0.6rem;
+    padding-right: 5px;
+}
+
+.stadoMQTT{
+height: 15px;
+width: 15px;
+background: #fa4646;
+}

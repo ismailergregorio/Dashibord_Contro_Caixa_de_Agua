@@ -70,7 +70,13 @@ export default function Grafico({ titulo, dados, valorAtual }) {
     },
     tooltip: {
       shared: true,
-      headerFormat: "<b>Hunting season starting autumn {point.x}</b><br>",
+      headerFormat: "<b>Dados do Ponto {point.x}</b><br>",
+      pointFormat: `
+    <span style="color:{series.color}">●</span>
+    Sensor: <b>{point.nomeSensor}</b><br>
+    Valor: <b>{point.y}</b><br>
+    Data: <b>{point.dataHora}</b><br>
+  `
     },
     credits: {
       enabled: false,
@@ -85,8 +91,13 @@ export default function Grafico({ titulo, dados, valorAtual }) {
     },
     series: [
       {
-        name: "Moose",
-        data: dados.map(item => [item.id, item.valor]),//dados
+        name: "Nivel da Caixa",
+        data: dados.map(item => ({
+          x: item.id,
+          y: item.valor,
+          nomeSensor: item.nomeSensor,
+          dataHora: item.dataHora
+        })),//dados
         marker: {
           enabled: true, // habilita os pontos
           radius: 4, // tamanho do ponto
@@ -133,7 +144,12 @@ export default function Grafico({ titulo, dados, valorAtual }) {
     const chart = chartRef.current.chart;
 
     chart.series[0].addPoint(
-      [dados.length + 1, valorAtual],
+      {
+        x: dados.length + 1,
+        y: valorAtual,
+        nome_sensor: "caixa",
+        data_hora: new Date().toISOString()
+      },
       true,
       false
     );
@@ -146,7 +162,7 @@ export default function Grafico({ titulo, dados, valorAtual }) {
         <h1 className="titulo_grafico">{titulo}</h1>
         <h1 className="titulo_grafico">{valorAtual}</h1>
       </div>
-      <HighchartsReact highcharts={Highcharts} options={options} ref={chartRef}/>
+      <HighchartsReact highcharts={Highcharts} options={options} ref={chartRef} />
     </div>
   );
 }

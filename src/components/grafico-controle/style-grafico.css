@@ -1,5 +1,6 @@
 .grafico{
  background: var(--secondary-color);
+ border-radius: 10px;
  /* height: 200px; */
 }
 .titulo_grafico ,.TextGrafico{
