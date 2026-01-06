@@ -1,0 +1,95 @@
+@import "../index.css";
+
+/* Layout principal */
+.login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card de login */
+.containerLogin {
+  width: 300px;
+  height: 350px;
+  background: var(--secondary-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* garante bordas limpas */
+}
+
+/* Cabeçalho */
+.headerLogin {
+  height: 100px;
+  background: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerLogin h1 {
+  font-family: "Inter", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Formulário */
+.formInputs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+}
+
+/* Inputs */
+.inputLogin {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: "Inter", sans-serif;
+}
+
+.inputLogin label {
+  font-size: 0.75rem;
+  color: rgb(220, 220, 220);
+}
+
+/* Campos */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.85rem;
+}
+
+/* Botão */
+.btnlogin {
+  width: 100%;
+  margin-top: 10px;
+  padding: 9px 12px;
+  border-radius: 6px;
+  border: none;
+  background: var(--tree-color);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btnlogin:hover {
+  background: #d4a25b;
+}
+
+/* Link */
+.esqueciSenha {
+  margin-top: 8px;
+  text-align: center;
+  text-decoration: none;
+  color: rgb(209, 209, 209);
+  font-size: 0.7rem;
+}

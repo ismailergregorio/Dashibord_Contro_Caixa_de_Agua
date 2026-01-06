@@ -1,8 +1,7 @@
-
-import Hader from "./hader/hader";
-import MainControle from "./d-controle/main-controle";
-import ConteinerGrafico from "./conteiner-graficos/main-conteiner-graficos";
-import ConteinerSensor from "./conteiner-sersores/main-conteiner-sensores";
+import Hader from "../hader/hader";
+import MainControle from "../d-controle/main-controle";
+import ConteinerGrafico from "../conteiner-graficos/main-conteiner-graficos";
+import ConteinerSensor from "../conteiner-sersores/main-conteiner-sensores";
 import mqtt from "mqtt";
 import { useRef, useState, useEffect } from "react";
 export default function App() {
