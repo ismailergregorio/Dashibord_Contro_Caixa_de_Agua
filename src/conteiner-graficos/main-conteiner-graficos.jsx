@@ -3,10 +3,11 @@ import Grafico from "../components/grafico-controle/grafico";
 import { useEffect, useState, useRef } from "react";
 import mqtt from "mqtt";
 import axios from 'axios'
+import api from "../services/api";
 export default function ConteinerGrafico({mqttData}) {
 
-  const getDadosCaixaStado = "http://192.168.100.5:8081/api/caixa/ultimo-caixa";
-  const getDadosMotoStado = "http://192.168.100.5:8081/api/motor/get";
+  const getDadosCaixaStado = "http://192.168.100.46:8081/api/caixa/ultimo-caixa";
+  const getDadosMotoStado = "http://192.168.100.46:8081/api/motor/get";
 
   const [dadosCaixa,setDadosCaixa] = useState([]);
   const [dadosMotor,setDadosMotor] = useState([]);
@@ -34,7 +35,7 @@ export default function ConteinerGrafico({mqttData}) {
 
   const getDadosCaixa = () => {
     try {
-      axios.get(getDadosCaixaStado).then((res) => {
+      api.get(getDadosCaixaStado).then((res) => {
         setDadosCaixa(res.data);
       })
     } catch {
@@ -46,7 +47,7 @@ export default function ConteinerGrafico({mqttData}) {
 
   const getDadosMotor = () => {
     try {
-      axios.get(getDadosMotoStado).then((res) => {
+      api.get(getDadosMotoStado).then((res) => {
         setDadosMotor(res.data);
       })
     } catch {
