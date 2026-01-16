@@ -4,8 +4,10 @@ import ConteinerGrafico from "../conteiner-graficos/main-conteiner-graficos";
 import ConteinerSensor from "../conteiner-sersores/main-conteiner-sensores";
 import mqtt from "mqtt";
 import { useRef, useState, useEffect } from "react";
+import { useNavigate} from "react-router-dom";
 export default function App() {
     const clientRef = useRef(null);
+    const navigate = useNavigate();
 
     const initSite = "site/init";
     // Topicos MQTT

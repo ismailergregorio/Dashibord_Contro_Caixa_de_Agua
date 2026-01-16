@@ -21,9 +21,9 @@ export default function PaginaLogin() {
         "http://192.168.100.5:8081/usuario/auth",
         dados
       );
-
-      const token = resposta.data.token;
-      localStorage.setItem("token", token);
+      console.log(resposta.data)
+      localStorage.setItem("token", resposta.data.token);
+      localStorage.setItem("refreshToken",resposta.data.refreshToken)
       navigate("/app");
 
 
