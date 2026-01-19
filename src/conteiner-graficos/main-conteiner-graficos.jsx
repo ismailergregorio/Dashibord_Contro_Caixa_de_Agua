@@ -1,16 +1,14 @@
 import "./style-conteine-grafico.css";
 import Grafico from "../components/grafico-controle/grafico";
-import { useEffect, useState, useRef } from "react";
-import mqtt from "mqtt";
-import axios from 'axios'
+import { useEffect, useState,} from "react";
+// import mqtt from "mqtt";
+// import axios from 'axios'
 import api from "../services/api";
-import { Navigate, useNavigate } from "react-router-dom";
+// import { Navigate, useNavigate } from "react-router-dom";
 export default function ConteinerGrafico({mqttData}) {
 
-  const navigate = useNavigate();
-
-  const getDadosCaixaStado = "http://localhost:8081/api/caixa/get";
-  const getDadosMotoStado = "http://localhost:8081/api/motor/get";
+  const getDadosCaixaStado = "/api/caixa";
+  const getDadosMotoStado = "/api/motor";
 
   const [dadosCaixa,setDadosCaixa] = useState([]);
   const [dadosMotor,setDadosMotor] = useState([]);
