@@ -5,7 +5,7 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(config => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("accessToken");
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -18,24 +18,37 @@ api.interceptors.response.use(
   res => res,
   async error => {
     const originalRequest = error.config;
+    const status = error.response?.status;
 
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
-      const refresh = localStorage.getItem("refreshToken");
+      try {
+        const refresh = localStorage.getItem("refreshToken");
 
-      const { data } = await api.post("/usuario/refresh", {
-        refreshToken: refresh
-      });
+        const { data } = await api.post("/usuario/refresh", {
+          refreshToken: refresh
+        });
 
-      localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem("refreshToken", data.refreshToken);
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
 
-      originalRequest.headers.Authorization =
-        `Bearer ${data.accessToken}`;
+        originalRequest.headers.Authorization =
+          `Bearer ${data.accessToken}`;
 
-      return api(originalRequest);
+        return api(originalRequest);
+
+      } catch (err) {
+        // Falhou o refresh → logout forçado
+        localStorage.clear();
+        window.location.href = "/";
+      }
     }
+
+    // if (status === 403) {
+    //   localStorage.clear();
+    //   window.location.href = "/";
+    // }
 
     return Promise.reject(error);
   }

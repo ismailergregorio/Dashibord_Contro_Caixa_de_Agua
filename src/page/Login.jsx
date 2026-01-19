@@ -18,12 +18,12 @@ export default function PaginaLogin() {
       }
 
       const resposta = await axios.post(
-        "http://192.168.100.5:8081/usuario/auth",
+        "http://localhost:8081/auth",
         dados
       );
       console.log(resposta.data)
-      localStorage.setItem("token", resposta.data.token);
-      localStorage.setItem("refreshToken",resposta.data.refreshToken)
+      localStorage.setItem("token", resposta.data.toker);
+      localStorage.setItem("refreshToken",resposta.data.refreshToker)
       navigate("/app");
 
 

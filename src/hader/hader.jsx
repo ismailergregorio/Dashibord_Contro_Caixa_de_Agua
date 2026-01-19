@@ -9,7 +9,7 @@ export default function Hader() {
     try {
       const refresh = localStorage.getItem("refreshToken");
 
-      await axios.post("http://localhost:8081/usuario/logout",{ refreshToken:refresh});
+      // await axios.post("http://localhost:8081/usuario/logout",{ refreshToken:refresh});
 
       localStorage.clear();
       console.log("teste")

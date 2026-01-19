@@ -4,10 +4,13 @@ import { useEffect, useState, useRef } from "react";
 import mqtt from "mqtt";
 import axios from 'axios'
 import api from "../services/api";
+import { Navigate, useNavigate } from "react-router-dom";
 export default function ConteinerGrafico({mqttData}) {
 
-  const getDadosCaixaStado = "http://192.168.100.46:8081/api/caixa/ultimo-caixa";
-  const getDadosMotoStado = "http://192.168.100.46:8081/api/motor/get";
+  const navigate = useNavigate();
+
+  const getDadosCaixaStado = "http://localhost:8081/api/caixa/get";
+  const getDadosMotoStado = "http://localhost:8081/api/motor/get";
 
   const [dadosCaixa,setDadosCaixa] = useState([]);
   const [dadosMotor,setDadosMotor] = useState([]);
