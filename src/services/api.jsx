@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8081"
+  baseURL: "http://192.168.100.5:8081"
 });
 
 api.interceptors.request.use(config => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("accessToken");
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -26,7 +26,7 @@ api.interceptors.response.use(
       try {
         const refresh = localStorage.getItem("refreshToken");
 
-        const { data } = await api.post("/usuario/refresh", {
+        const { data } = await api.post("/refresh", {
           refreshToken: refresh
         });
 

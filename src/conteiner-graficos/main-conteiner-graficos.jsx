@@ -1,17 +1,15 @@
 import "./style-conteine-grafico.css";
 import Grafico from "../components/grafico-controle/grafico";
-import { useEffect, useState,} from "react";
-// import mqtt from "mqtt";
-// import axios from 'axios'
+import { useEffect, useState, } from "react";
+import { toast } from "react-toastify";
 import api from "../services/api";
-// import { Navigate, useNavigate } from "react-router-dom";
-export default function ConteinerGrafico({mqttData}) {
+export default function ConteinerGrafico({ mqttData }) {
 
   const getDadosCaixaStado = "/api/caixa";
   const getDadosMotoStado = "/api/motor";
 
-  const [dadosCaixa,setDadosCaixa] = useState([]);
-  const [dadosMotor,setDadosMotor] = useState([]);
+  const [dadosCaixa, setDadosCaixa] = useState([]);
+  const [dadosMotor, setDadosMotor] = useState([]);
 
 
   // // --- Valores da caixa de água (Vasio, Metade, Cheio) ---
@@ -34,27 +32,24 @@ export default function ConteinerGrafico({mqttData}) {
   // }
 
 
-  const getDadosCaixa = () => {
+  const getDadosCaixa = async () => {
     try {
-      api.get(getDadosCaixaStado).then((res) => {
-        setDadosCaixa(res.data);
-      })
-    } catch {
-      (err) => {
-        console.error(err, "erro na busca")
-      }
+      const res = await api.get(getDadosCaixaStado);
+      setDadosCaixa(res.data);
+    } catch (err) {
+      console.error("Erro na busca", err);
+      toast.error("Erro nos Dados ou Sem Autorização "+err)
     }
   }
 
-  const getDadosMotor = () => {
+  const getDadosMotor = async () => {
     try {
-      api.get(getDadosMotoStado).then((res) => {
-        setDadosMotor(res.data);
-      })
-    } catch {
-      (err) => {
-        console.error(err, "erro na busca")
-      }
+      const res = await api.get(getDadosMotoStado);
+      setDadosMotor(res.data);
+    } catch (err) {
+      console.error("Erro na busca", err);
+      toast.error("Erro nos Dados ou Sem Autorização "+err)
+
     }
   }
 

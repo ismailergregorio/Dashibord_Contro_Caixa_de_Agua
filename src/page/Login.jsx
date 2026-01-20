@@ -1,9 +1,9 @@
 import "./css-Login.css"
 import "../index.css"
 import { Link, useNavigate } from "react-router-dom";
-import { useSerialIds } from "highcharts";
 import { useState } from "react";
-import axios from "axios";
+import api from "../services/api"
+import { toast } from "react-toastify";
 export default function PaginaLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,17 +17,19 @@ export default function PaginaLogin() {
         senha: password
       }
 
-      const resposta = await axios.post(
-        "http://localhost:8081/auth",
+      const resposta = await api.post(
+        "/auth",
         dados
       );
       console.log(resposta.data)
-      localStorage.setItem("token", resposta.data.toker);
+      localStorage.setItem("accessToken", resposta.data.toker);
       localStorage.setItem("refreshToken",resposta.data.refreshToker)
+      toast.success("Susseso");
+
       navigate("/app");
 
-
     } catch (error) {
+      toast.error("Erro ao Fazer Login verifique a senha ou usuario "+error.message)
       console.error("Erro ao autenticar:", error.response?.data || error.message);
     }
   };
