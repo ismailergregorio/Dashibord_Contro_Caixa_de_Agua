@@ -4,7 +4,7 @@ import ConteinerGrafico from "../conteiner-graficos/main-conteiner-graficos";
 import ConteinerSensor from "../conteiner-sersores/main-conteiner-sensores";
 import mqtt from "mqtt";
 import { useRef, useState, useEffect } from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export default function App() {
     const clientRef = useRef(null);
     const navigate = useNavigate();
@@ -46,7 +46,16 @@ export default function App() {
         ligarMotor
     };
 
-    const url = "ws://192.168.100.46:9001";
+    // const client = mqtt.connect('wss://mqtt.devteciot.com', {
+    //     username: 'admin',
+    //     password: '123'
+    // });
+
+
+    // client.on('connect', () => console.log('Conectado via Cloudflare!'));
+    // client.on('message', (topic, message) => console.log(topic, message.toString()));
+
+    const url = "wss://mqtt.devteciot.com";
 
     const options = {
         clean: true,

@@ -1,14 +1,16 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
+const baseURL = "https://api.devteciot.com"
+
 const api = axios.create({
-  baseURL: "http://localhost:8081",
+  baseURL: baseURL,
 });
 
 export default api;
 
 const refreshApi = axios.create({
-  baseURL: "http://localhost:8081",
+  baseURL: baseURL,
 });
 
 api.interceptors.request.use((config) => {
